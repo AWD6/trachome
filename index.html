@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRACHOME (Empowering Every Breath, Everywhere.) — TRACHEOSTOMY CARE LEARNING PLATFORM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-group">
+        <!-- 3D Medical Airway & Tracheostomy Tube SVG Logo (No Emoji) -->
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="46" height="46">
+            <defs>
+              <linearGradient id="logoLungGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#b8cdd9" />
+                <stop offset="50%" stop-color="#748da3" />
+                <stop offset="100%" stop-color="#38bdf8" />
+              </linearGradient>
+              <linearGradient id="logoTrachGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#f8fafc" />
+                <stop offset="50%" stop-color="#cbd5e1" />
+                <stop offset="100%" stop-color="#94a3b8" />
+              </linearGradient>
+              <linearGradient id="logoFlangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#a3be5c" />
+                <stop offset="100%" stop-color="#525c32" />
+              </linearGradient>
+            </defs>
+            <!-- 3D Lungs Silhouette -->
+            <path d="M26,26 C16,26 10,36 10,48 C10,55 16,58 23,55 C27,53 28,46 28,36 Z" fill="url(#logoLungGrad)" opacity="0.88" />
+            <path d="M38,26 C48,26 54,36 54,48 C54,55 48,58 41,55 C37,53 36,46 36,36 Z" fill="url(#logoLungGrad)" opacity="0.88" />
+            <!-- 3D Trachea Airway Cylinder & Rings -->
+            <rect x="28" y="8" width="8" height="32" rx="4" fill="url(#logoTrachGrad)" stroke="#ffffff" stroke-width="1" />
+            <line x1="28.5" y1="13" x2="35.5" y2="13" stroke="#4b5f73" stroke-width="1.3" />
+            <line x1="28.5" y1="17" x2="35.5" y2="17" stroke="#4b5f73" stroke-width="1.3" />
+            <!-- 3D Tracheostomy Butterfly Flange & Curved Cannula -->
+            <path d="M21,23 C21,20 26,21 29,23 L35,23 C38,21 43,20 43,23 L43,29 C43,32 38,31 35,29 L29,29 C26,31 21,32 21,29 Z" fill="url(#logoFlangeGrad)" stroke="#ffffff" stroke-width="1.2" />
+            <path d="M18,26 Q32,26 32,42" fill="none" stroke="#fde047" stroke-width="3.2" stroke-linecap="round" />
+            <circle cx="18" cy="26" r="3.5" fill="#525c32" stroke="#fde047" stroke-width="1.5" />
+            <!-- 3D Airflow Breath Waves -->
+            <path d="M8,22 Q13,18 16,22 M6,27 Q11,24 14,27" fill="none" stroke="#fde047" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="brand-title">
+          <div style="display:flex; align-items:baseline; gap:0.55rem; flex-wrap:wrap;">
+            <h1>TRACHOME</h1>
+            <span style="font-size:0.82rem; font-weight:700; color:#fde047;">(Empowering Every Breath, Everywhere.)</span>
+            <span style="font-size:0.75rem; font-weight:800; background:rgba(255,255,255,0.16); padding:0.12rem 0.55rem; border-radius:6px; letter-spacing:0.04em;">TRACHEOSTOMY CARE LEARNING PLATFORM</span>
+          </div>
+          <p>นวัตกรรมการเรียนรู้เพื่อเสริมสร้างความรู้และทักษะในการดูแลผู้ป่วยเจาะคอ ส่งเสริมให้บุคลากรทางการแพทย์ ผู้ป่วย และผู้ดูแล สามารถดูแลระบบทางเดินหายใจได้อย่างมั่นใจและปลอดภัยในทุกสถานที่</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="pdpa-id-pill">
+          <span>🆔 TH ID:</span>
+          <strong id="headerPatientId">TH-841029</strong>
+        </div>
+        <div class="pdpa-id-pill">
+          <span>ท่อที่เลือก:</span>
+          <strong id="headerTubeName">ท่อโลหะ Jackson</strong>
+        </div>
+        <button class="btn-auth-top" onclick="openAuthModal()">
+          <span>👤</span> บัญชีผู้ใช้งาน
+        </button>
+        <button class="btn-sos-top" onclick="switchTab('safety')">
+          <span>🚨</span> ฉุกเฉิน / เทียบสีเสมหะ
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav class="nav-bar" aria-label="เมนูหลัก">
+    <div class="nav-inner">
+      <button class="nav-tab active" data-target="tubes" onclick="switchTab('tubes')">
+        <span>1. สำรวจท่อเจาะคอ 3 มิติ</span>
+      </button>
+      <button class="nav-tab" data-target="guided" onclick="switchTab('guided')">
+        <span>2. สาธิต &amp; ทำตาม 3 มิติ</span>
+        <span class="tab-badge">ทำได้มั้ย</span>
+      </button>
+      <button class="nav-tab" data-target="sim" onclick="switchTab('sim')">
+        <span>3. ฝึกปฏิบัติจริง 3 มิติ</span>
+        <span class="tab-badge" id="simScoreBadge">0/4 ด่าน</span>
+      </button>
+      <button class="nav-tab" data-target="safety" onclick="switchTab('safety')">
+        <span>4. เทียบสีเสมหะจริง &amp; ฉุกเฉิน</span>
+        <span class="tab-badge">ปลอดภัยมั้ย</span>
+      </button>
+      <button class="nav-tab" data-target="eval" onclick="switchTab('eval')">
+        <span>5. สมุดพก</span>
+        <span class="tab-badge" id="evalPassBadge">8/8 ข้อ</span>
+      </button>
+      <button class="nav-tab" data-target="admin" onclick="switchTab('admin')">
+        <span>6. ผู้ดูแลระบบ</span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- ================================================================= -->
+    <!-- TAB 1: FULL-SCREEN 3D MANNEQUIN TUBE EXPLORER                     -->
+    <!-- ================================================================= -->
+    <section id="view-tubes" class="view-section active">
+      <div class="card">
+        <!-- 4 Tube Type Selector Strip -->
+        <div class="tube-selector-strip" id="tubeSelectorStrip"></div>
+
+        <!-- FULL-SCREEN 3D MANNEQUIN VIEWPORT -->
+        <div class="viewport-3d-full">
+          <div class="hud-top-bar">
+            <div class="hud-step-pills" id="lab3dModulePills"></div>
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <span class="phase-status-pill" id="lab3dPhaseBadge">พร้อมฝึกปฏิบัติบนอุปกรณ์ 3 มิติ</span>
+              <button class="hud-step-btn" onclick="replayLab3dDemo()">🔊 ฟังซ้ำ</button>
+            </div>
+          </div>
+
+          <!-- Center 3D Medical Mannequin with Tracheostomy Tube at the Neck -->
+          <div class="mannequin-3d-center" id="mannequin3dLabCanvas"></div>
+
+          <!-- Bottom In-Screen Interactive Overlay -->
+          <div class="inscreen-action-overlay" id="lab3dActionOverlay">
+            <div class="explanation-with-pip">
+              <div class="pip-visual-box" id="lab3dPipVisualBox"></div>
+              <div>
+                <div class="narration-subtitle-box" id="lab3dSubtitleHtml"></div>
+                <div id="lab3dInteractiveControlBox"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 2: 3D STEP-BY-STEP DEMONSTRATION & FOLLOW-ALONG               -->
+    <!-- ================================================================= -->
+    <section id="view-guided" class="view-section">
+      <div class="card">
+        <div class="proc-icon-tabs" id="procedureSelector">
+          <button class="proc-card-btn active" data-proc="wound" onclick="selectProcedure('wound')">
+            <span style="font-size:1.3rem;">🩹</span> <div>1. ทำแผลเจาะคอ &amp; ผ้าก๊อซตัว Y</div>
+          </button>
+          <button class="proc-card-btn" data-proc="inner" onclick="selectProcedure('inner')">
+            <span style="font-size:1.3rem;">🧼</span> <div>2. ถอด-ล้างท่อชั้นใน &amp; ต้มฆ่าเชื้อ</div>
+          </button>
+          <button class="proc-card-btn" data-proc="suction" onclick="selectProcedure('suction')">
+            <span style="font-size:1.3rem;">🫧</span> <div>3. ดูดเสมหะในรูท่อเจาะคอ</div>
+          </button>
+          <button class="proc-card-btn" data-proc="humid" onclick="selectProcedure('humid')">
+            <span style="font-size:1.3rem;">💨</span> <div>4. พ่นละอองไอน้ำ</div>
+          </button>
+        </div>
+
+        <!-- Suction Size & Pressure Selector Strip -->
+        <div id="suctionCalculatorBox" style="display:none; margin-bottom:0.85rem;">
+          <div style="background:#f1f5f8; border:2px solid #748da3; border-radius:14px; padding:0.75rem 1rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:0.65rem;">
+            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+              <strong style="color:#2c3947;">📐 เบอร์ท่อผู้ป่วย:</strong>
+              <select id="tubeSizeSelect" class="form-control" style="width:auto; font-weight:700;" onchange="updateSuctionCalc()">
+                <option value="neo3">เด็กแรกเกิด NEO 3 / 3.5</option>
+                <option value="neo4">เด็กเล็ก NEO 4 / 4.5</option>
+                <option value="ped4">เด็กโต PED 4 / 4.5</option>
+                <option value="ped5">เด็กโต PED 5 / 5.5</option>
+                <option value="adult4">ผู้ใหญ่ Shiley No.4 / Jackson 5</option>
+                <option value="adult6" selected>ผู้ใหญ่ Shiley No.6 / Jackson 6</option>
+                <option value="adult8">ผู้ใหญ่ Shiley No.8 / Jackson 7</option>
+                <option value="jackson8">ผู้ใหญ่ Jackson เบอร์ 8</option>
+                <option value="jackson9">ผู้ใหญ่ Jackson เบอร์ 9–10</option>
+              </select>
+            </div>
+            <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+              <span class="badge badge-teal" style="font-size:0.88rem; padding:0.35rem 0.8rem;">สายดูด: <strong id="calcCatheterFr" style="margin-left:4px;">เบอร์ 10–12 Fr</strong></span>
+              <span class="badge badge-amber" style="font-size:0.88rem; padding:0.35rem 0.8rem;">แรงดัน: <strong id="calcPressureMmhg" style="margin-left:4px;">112–150 mmHg</strong></span>
+              <span class="badge badge-red" style="font-size:0.88rem; padding:0.35rem 0.8rem;">⏱️ ห้ามดูดเกิน 10–15 วินาที</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FULL-SCREEN 3D MANNEQUIN PROCEDURE THEATER -->
+        <div class="viewport-3d-full">
+          <div class="hud-top-bar">
+            <div class="hud-step-pills" id="guidedStepPills"></div>
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <span class="phase-status-pill" id="guidedPhaseBadge">พร้อมฝึกปฏิบัติ</span>
+              <button class="hud-step-btn" onclick="replayGuidedStepDemo()">🔊 ฟังซ้ำ</button>
+            </div>
+          </div>
+
+          <div class="mannequin-3d-center" id="guided3dSceneContainer"></div>
+
+          <div class="inscreen-action-overlay" id="guidedActionOverlay">
+            <div class="explanation-with-pip">
+              <div class="pip-visual-box" id="guidedPipVisualBox"></div>
+              <div>
+                <div class="narration-subtitle-box" id="guidedSubtitleHtml"></div>
+                <div id="guidedInteractiveControlBox"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 3: HANDS-ON 3D INTERACTIVE PRACTICE                           -->
+    <!-- ================================================================= -->
+    <section id="view-sim" class="view-section">
+      <div class="card">
+        <div class="proc-icon-tabs">
+          <button class="proc-card-btn active" id="simTab1" onclick="switchSimStage(1)">
+            <span>🧰</span> <div>ด่าน 1: เลือกอุปกรณ์ไร้เชื้อ <span id="simTick1">⬜</span></div>
+          </button>
+          <button class="proc-card-btn" id="simTab2" onclick="switchSimStage(2)">
+            <span>🩹</span> <div>ด่าน 2: ลากไม้พันสำลีเช็ดแผล 4 ทิศ <span id="simTick2">⬜</span></div>
+          </button>
+          <button class="proc-card-btn" id="simTab3" onclick="switchSimStage(3)">
+            <span>🧼</span> <div>ด่าน 3: ขัดล้าง &amp; หมุนล็อคท่อ <span id="simTick3">⬜</span></div>
+          </button>
+          <button class="proc-card-btn" id="simTab4" onclick="switchSimStage(4)">
+            <span>🫧</span> <div>ด่าน 4: ดูดเสมหะในรูท่อเจาะคอ <span id="simTick4">⬜</span></div>
+          </button>
+        </div>
+
+        <div class="viewport-3d-full">
+          <div class="hud-top-bar">
+            <span class="badge badge-teal" id="simStageHeaderBadge" style="font-size:0.9rem; padding:0.4rem 0.9rem;">ด่านที่ 1 / 4</span>
+            <div style="display:flex; gap:0.5rem; align-items:center;">
+              <span class="phase-status-pill" id="simPhaseBadge">ลงมือทำบนจอ 3 มิติ</span>
+              <button class="hud-step-btn" onclick="speakSimInstruction()">🔊 ฟังคำแนะนำ</button>
+            </div>
+          </div>
+
+          <div class="mannequin-3d-center" id="sim3dCanvasContainer"></div>
+          <div class="inscreen-action-overlay" id="sim3dControlOverlay"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 4: REAL CLINICAL SPUTUM & STOMA PHOTOGRAPH COMPARISON         -->
+    <!-- ================================================================= -->
+    <section id="view-safety" class="view-section">
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:0.9rem;">
+          <h2 style="font-size:1.18rem; font-weight:800;">🚨 4. เทียบสีเสมหะจากภาพถ่ายจริง &amp; ลักษณะแผลเจาะคอ</h2>
+          <a href="tel:1669" class="btn btn-danger" style="text-decoration:none;">📞 โทรฉุกเฉิน 1669</a>
+        </div>
+
+        <div style="margin-bottom:1.1rem;">
+          <div style="font-weight:800; font-size:0.95rem; margin-bottom:0.5rem;">1. แตะเทียบภาพถ่ายเสมหะจริงจากท่อเจาะคอ:</div>
+          <div class="specimen-grid" id="secSwatchGrid"></div>
+        </div>
+
+        <div style="margin-bottom:1.1rem;">
+          <div style="font-weight:800; font-size:0.95rem; margin-bottom:0.5rem;">2. แตะเทียบภาพถ่ายแผลเจาะคอจริง &amp; อาการทางเดินหายใจ:</div>
+          <div class="specimen-grid" id="stomaSwatchGrid"></div>
+        </div>
+
+        <div id="visualTriageResultBox" style="background:#f4f6ef; border:2.5px solid #525c32; border-radius:16px; padding:1.1rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap;"></div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 5: สมุดพก                                                     -->
+    <!-- ================================================================= -->
+    <section id="view-eval" class="view-section">
+      <div class="notebook-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; border-bottom:2px dashed #b7c697; padding-bottom:0.85rem; margin-bottom:0.9rem;">
+          <div>
+            <span class="badge badge-teal" style="font-size:0.85rem;">📘 สมุดพกประจำตัวผู้ดูแล</span>
+            <h2 style="font-size:1.25rem; font-weight:800; margin-top:0.25rem;">
+              สรุปผลการฝึกปฏิบัติและบันทึกการดูแลรายวัน
+            </h2>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.6rem;">
+            <span class="badge badge-blue" style="font-size:0.92rem; padding:0.45rem 0.95rem;">
+              🆔 TH ID: <strong id="notebookPatientId" style="margin-left:4px;">TH-841029</strong>
+            </span>
+          </div>
+        </div>
+
+        <div class="opd-metrics-grid">
+          <div class="opd-metric-box">
+            <div style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">1. ผลประเมินความสามารถ 8 ข้อ</div>
+            <div class="metric-val" id="opdCardEvalScore">8 / 8 (100%)</div>
+            <span id="opdCardEvalBadge" class="badge badge-green">✅ ผ่านเกณฑ์มาตรฐาน</span>
+          </div>
+          <div class="opd-metric-box">
+            <div style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">2. จำนวนครั้งที่ปฏิบัติสะสม</div>
+            <div class="metric-val" id="opdCardLogCount">1 ครั้ง</div>
+            <span id="opdCardAdherenceBadge" class="badge badge-teal">บันทึกอัตโนมัติ</span>
+          </div>
+          <div class="opd-metric-box">
+            <div style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">3. สถานะเสมหะและแผลล่าสุด</div>
+            <div class="metric-val" id="opdCardClinicalStatus" style="font-size:1.15rem; color:#525c32;">✅ ปกติ</div>
+            <span id="opdCardRiskBadge" class="badge badge-green">เสมหะขาวใส แผลแห้งดี</span>
+          </div>
+        </div>
+
+        <div style="background:#ffffff; border:1.5px solid var(--border); border-radius:14px; padding:1rem; margin-bottom:1rem;">
+          <div style="font-weight:800; font-size:0.95rem; margin-bottom:0.65rem; color:var(--spinach-dark);">
+            ✍️ บันทึกการดูแลประจำวัน
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:0.75rem;">
+            <div>
+              <label style="font-size:0.8rem; font-weight:700;">กิจกรรมที่ปฏิบัติเสร็จสิ้น:</label>
+              <select id="logActivity" class="form-control" onchange="autoLogNotebookSelection()">
+                <option value="ทำแผลเจาะคอ + ล้างท่อชั้นในครบขั้นตอน">🩹🧼 ทำแผลเจาะคอ + ล้างท่อชั้นในครบขั้นตอน</option>
+                <option value="ถอดล้างท่อชั้นในอย่างเดียว">🧼 ถอดล้างท่อชั้นในอย่างเดียว</option>
+                <option value="ดูดเสมหะ + พ่นละอองไอน้ำ">🫧💨 ดูดเสมหะ + พ่นละอองไอน้ำ</option>
+                <option value="เปลี่ยนสายผูกท่อร่วมกับผู้ช่วย 2 คน">👥✌️ เปลี่ยนสายผูกท่อ 2 คน</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:0.8rem; font-weight:700;">ลักษณะเสมหะและแผลที่พบ:</label>
+              <select id="logSecretion" class="form-control" onchange="autoLogNotebookSelection()">
+                <option value="ปกติ: เสมหะขาวใส แผลแห้งสะอาดดี">✅ ปกติ: เสมหะขาวใส แผลแห้งสะอาดดี</option>
+                <option value="เฝ้าระวัง: เสมหะเหนียวข้น">⚠️ เฝ้าระวัง: เสมหะเหนียวข้น</option>
+                <option value="เฝ้าระวัง: เสมหะเหลือง/เขียว หรือผิวรอบแผลแดงชื้น">🟠 ผิดปกติ: เสมหะเหลือง/เขียว หรือแผลแดงชื้น</option>
+                <option value="ฉุกเฉิน: มีเลือดสด / หอบเหนื่อย / ท่อตัน">🚨 ฉุกเฉิน: มีเลือดสด / หอบเหนื่อย / ท่อตัน</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-size:1.05rem; font-weight:800; margin-bottom:0.55rem;">📋 รายการความสามารถผู้ดูแล 8 ข้อ</h3>
+        <div class="eval-table-wrap" style="margin-bottom:1.15rem;">
+          <table class="eval-table">
+            <thead>
+              <tr>
+                <th style="width:45px; text-align:center;">ข้อ</th>
+                <th>รายการความสามารถผู้ดูแล</th>
+                <th style="width:90px;">วิธีวัด</th>
+                <th style="width:130px;">สถานะ</th>
+                <th>บันทึกจากการฝึกปฏิบัติ</th>
+              </tr>
+            </thead>
+            <tbody id="evalTableBody"></tbody>
+          </table>
+        </div>
+
+        <h3 style="font-size:1.05rem; font-weight:800; margin-bottom:0.55rem;">🕒 ประวัติการปฏิบัติและการดูแลสะสมทั้งหมด</h3>
+        <div class="eval-table-wrap">
+          <table class="eval-table">
+            <thead>
+              <tr>
+                <th>วัน-เวลา</th>
+                <th>รหัส TH ID</th>
+                <th>ชนิดท่อ</th>
+                <th>กิจกรรมที่ปฏิบัติ</th>
+                <th>ลักษณะเสมหะและแผล</th>
+              </tr>
+            </thead>
+            <tbody id="homeLogTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 6: ADMIN DASHBOARD (Password: dmknj, No Patient PIN Access)   -->
+    <!-- ================================================================= -->
+    <section id="view-admin" class="view-section">
+      <div id="adminLockScreen" class="admin-lock-box">
+        <div style="font-size:2.6rem; margin-bottom:0.5rem;">🔒</div>
+        <h2 style="font-size:1.25rem; font-weight:800;">สำหรับผู้ดูแลระบบ (Admin)</h2>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin:0.4rem 0 1rem;">
+          กรุณากรอกรหัสผ่านผู้ดูแลระบบเพื่อเข้าดูตารางเชื่อมโยงรหัส TH ID กับเลข HN ชื่อ-นามสกุลผู้ป่วย และข้อมูลสถิติทั้งหมด
+        </p>
+        <input type="password" id="adminPassInput" class="form-control" placeholder="กรอกรหัสผ่าน Admin" style="margin-bottom:0.75rem; text-align:center; font-weight:700;" onkeydown="if(event.key==='Enter') unlockAdminDashboard()" />
+        <div id="adminLoginError" style="color:var(--merlot-red); font-weight:700; font-size:0.85rem; margin-bottom:0.65rem; display:none;"></div>
+        <button class="btn btn-primary" style="width:100%; padding:0.75rem;" onclick="unlockAdminDashboard()">
+          🔓 เข้าสู่ระบบผู้ดูแล
+        </button>
+      </div>
+
+      <div id="adminDashboardContent" style="display:none;">
+        <div style="background:var(--spinach-soft); border:2px solid var(--spinach); border-radius:14px; padding:0.9rem 1.15rem; margin-bottom:1.1rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
+          <div>
+            <span class="badge badge-green" id="gsheetConnectionBadge">🔓 โหมดผู้ดูแลระบบ</span>
+          </div>
+          <div style="display:flex; gap:0.45rem; flex-wrap:wrap;">
+            <a href="https://docs.google.com/spreadsheets/d/1ofEBgJnROBxFv8ofNYSjFl9SaqVXo76ycoQG0BM306I/edit" target="_blank" rel="noopener noreferrer" class="btn btn-success" style="text-decoration:none;">
+              📊 เปิดตารางฐานข้อมูลหลัก
+            </a>
+            <button class="btn btn-primary" onclick="fetchAdminDataFromGoogleSheets()">🔄 รีเฟรชข้อมูลล่าสุด</button>
+            <button class="btn btn-accent" onclick="exportAdminDataCSV()">📥 ส่งออก CSV</button>
+            <button class="btn btn-danger" onclick="lockAdminDashboard()">🔒 ล็อคหน้าจอ</button>
+          </div>
+        </div>
+
+        <div class="admin-kpi-grid">
+          <div class="admin-kpi-card">
+            <div style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">1. ผู้ดูแลผ่านเกณฑ์</div>
+            <div class="admin-kpi-val" id="adminKpiPassRate" style="color:var(--spinach);">100%</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">ผ่านเกณฑ์ ≥ 7 ใน 8 ข้อ</div>
+          </div>
+          <div class="admin-kpi-card" style="border-top-color:var(--placid);">
+            <div style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">2. ข้อมูลการฝึกสะสม</div>
+            <div class="admin-kpi-val" id="adminKpiAdherence" style="color:var(--placid);">8 ครั้ง</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">บันทึกอัตโนมัติจากทุกขั้นตอน</div>
+          </div>
+          <div class="admin-kpi-card" style="border-top-color:#6b7842;">
+            <div style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">3. แผลเจาะคอสะอาดปกติ</div>
+            <div class="admin-kpi-val" id="adminKpiNormalStoma" style="color:#525c32;">83%</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">เสมหะขาวใส แผลแห้งดี</div>
+          </div>
+          <div class="admin-kpi-card" style="border-top-color:var(--merlot-red);">
+            <div style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">4. เคสแจ้งเตือนเฝ้าระวัง</div>
+            <div class="admin-kpi-val" id="adminKpiAlertCases" style="color:var(--merlot-red);">2 ราย</div>
+            <div style="font-size:0.78rem; color:var(--merlot);">เสมหะเหลือง/เหนียว หรือแผลแดงชื้น</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size:1.05rem; font-weight:800; margin-bottom:0.65rem; color:var(--merlot);">
+            🔐 ตารางเชื่อมโยงรหัส TH ID ↔ เลข HN และชื่อ-นามสกุลผู้ป่วย
+          </h3>
+          <div class="eval-table-wrap">
+            <table class="eval-table">
+              <thead>
+                <tr>
+                  <th>รหัส TH ID</th>
+                  <th>เลข HN โรงพยาบาล</th>
+                  <th>ชื่อ-นามสกุลผู้ป่วย</th>
+                  <th>ชื่อ-นามสกุลผู้ดูแล</th>
+                  <th>ความสัมพันธ์</th>
+                  <th>ชนิดท่อเจาะคอ</th>
+                </tr>
+              </thead>
+              <tbody id="adminPdpaVaultTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size:1.05rem; font-weight:800; margin-bottom:0.75rem;">📊 อัตราผู้ดูแลทำถูกในแต่ละข้อ (ข้อ 1–8)</h3>
+          <div id="adminRubricBarsContainer"></div>
+        </div>
+
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.6rem; margin-bottom:0.85rem;">
+            <h3 style="font-size:1.05rem; font-weight:800;">🗂️ ประวัติการทำหัตถการและการฝึกปฏิบัติทั้งหมดของผู้ป่วย</h3>
+            <div style="display:flex; gap:0.45rem; flex-wrap:wrap;">
+              <input type="text" id="adminSearchInput" class="form-control" style="width:200px;" placeholder="🔍 ค้นหา TH ID / HN / ชื่อ..." oninput="renderAdminDashboard()" />
+              <select id="adminFilterRisk" class="form-control" style="width:auto;" onchange="renderAdminDashboard()">
+                <option value="all">ทั้งหมด</option>
+                <option value="alert">⚠️ เฉพาะเคสเฝ้าระวัง</option>
+                <option value="normal">✅ เฉพาะเคสปกติ</option>
+              </select>
+            </div>
+          </div>
+          <div class="eval-table-wrap">
+            <table class="eval-table">
+              <thead>
+                <tr>
+                  <th>รหัส TH ID / เลข HN</th>
+                  <th>ชื่อผู้ป่วย &amp; ผู้ดูแล</th>
+                  <th>ชนิดท่อ</th>
+                  <th>ผลประเมิน 8 ข้อ</th>
+                  <th>กิจกรรม &amp; อาการล่าสุด</th>
+                  <th>สถานะ</th>
+                </tr>
+              </thead>
+              <tbody id="adminRegistryTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- MANDATORY LOGIN & REGISTRATION GATE ON STARTUP (Clean Labels)     -->
+    <!-- ================================================================= -->
+    <div id="authModal" class="modal-overlay open mandatory-gate">
+      <div class="modal-content">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--spinach); padding-bottom:0.75rem; margin-bottom:1rem;">
+          <div style="display:flex; align-items:center; gap:0.6rem;">
+            <div style="width:36px; height:36px; border-radius:10px; background:var(--spinach); display:flex; align-items:center; justify-content:center;">
+              <svg viewBox="0 0 64 64" width="28" height="28">
+                <path d="M26,26 C16,26 10,36 10,48 C10,55 16,58 23,55 C27,53 28,46 28,36 Z" fill="#b8cdd9" />
+                <path d="M38,26 C48,26 54,36 54,48 C54,55 48,58 41,55 C37,53 36,46 36,36 Z" fill="#b8cdd9" />
+                <rect x="28" y="8" width="8" height="32" rx="4" fill="#f8fafc" />
+                <path d="M18,26 Q32,26 32,42" fill="none" stroke="#fde047" stroke-width="4" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div>
+              <h2 style="font-size:1.15rem; font-weight:800; color:var(--spinach-dark); line-height:1.2;">TRACHOME — เข้าสู่ระบบ / สมัครใช้งาน</h2>
+              <div style="font-size:0.74rem; color:var(--text-muted); font-weight:600;">Empowering Every Breath, Everywhere.</div>
+            </div>
+          </div>
+          <button class="btn btn-secondary" id="authCloseBtn" style="padding:0.3rem 0.7rem; display:none;" onclick="closeAuthModal()">✖ ปิด</button>
+        </div>
+
+        <!-- Mode Switcher: Login vs Register -->
+        <div style="display:flex; gap:0.5rem; margin-bottom:1rem;">
+          <button class="btn btn-primary" id="btnAuthTabLogin" style="flex:1;" onclick="switchAuthTab('login')">🔑 เข้าสู่ระบบ</button>
+          <button class="btn btn-outline" id="btnAuthTabReg" style="flex:1;" onclick="switchAuthTab('register')">📝 สมัครใช้งานใหม่</button>
+        </div>
+
+        <!-- Login Form -->
+        <div id="authLoginPanel">
+          <div style="display:flex; flex-direction:column; gap:0.75rem;">
+            <div>
+              <label style="font-size:0.84rem; font-weight:700;">รหัสประจำตัว TH ID หรือ เลข HN:</label>
+              <input type="text" id="loginIdentifier" class="form-control" value="TH-841029" placeholder="กรอก TH ID หรือ เลข HN" />
+            </div>
+            <div>
+              <label style="font-size:0.84rem; font-weight:700;">รหัส PIN 4 หลัก:</label>
+              <input type="password" id="loginPin" class="form-control" value="1234" placeholder="กรอกรหัส PIN 4 หลัก" />
+            </div>
+            <button class="btn btn-primary" id="btnSubmitLogin" style="width:100%; padding:0.75rem;" onclick="submitPatientLogin()">
+              ✅ เข้าสู่ระบบ
+            </button>
+          </div>
+        </div>
+
+        <!-- Register Form (Clean Labels without Unnecessary Parentheses) -->
+        <div id="authRegisterPanel" style="display:none;">
+          <div style="display:flex; flex-direction:column; gap:0.65rem;">
+            <div>
+              <label style="font-size:0.82rem; font-weight:700;">1. เลข HN โรงพยาบาลของผู้ป่วย:</label>
+              <input type="text" id="regHN" class="form-control" placeholder="เช่น HN-690995" />
+            </div>
+            <div>
+              <label style="font-size:0.82rem; font-weight:700;">2. ชื่อ-นามสกุลผู้ป่วย:</label>
+              <input type="text" id="regPatientName" class="form-control" placeholder="ระบุชื่อ-นามสกุลผู้ป่วย" />
+            </div>
+            <div>
+              <label style="font-size:0.82rem; font-weight:700;">3. ชื่อ-นามสกุลผู้ดูแลหลัก:</label>
+              <input type="text" id="regCaregiverName" class="form-control" placeholder="ระบุชื่อ-นามสกุลผู้ดูแล" />
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+              <div>
+                <label style="font-size:0.82rem; font-weight:700;">4. ชนิดท่อเจาะคอ:</label>
+                <select id="regTubeType" class="form-control">
+                  <option value="jackson">ท่อโลหะ Jackson</option>
+                  <option value="shiley">ท่อพลาสติก Shiley</option>
+                  <option value="fenestrated">ท่อมีรูพูด Fenestrated</option>
+                  <option value="ttube">ท่อตัวที T-Tube</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:0.82rem; font-weight:700;">5. ตั้งรหัส PIN 4 หลัก:</label>
+                <input type="password" id="regPin" class="form-control" value="1234" maxlength="6" />
+              </div>
+            </div>
+            <button class="btn btn-primary" id="btnSubmitRegister" style="width:100%; padding:0.75rem; margin-top:0.35rem;" onclick="submitPatientRegistration()">
+              ✅ สมัครใช้งาน
+            </button>
+          </div>
+        </div>
+
+        <div id="authFeedbackBox" style="margin-top:0.85rem; padding:0.75rem; border-radius:10px; font-weight:700; display:none;"></div>
+
+        <div class="creator-modal-strip">
+          Conceived, Designed, and Brought to Life by <strong>RN.Patipon Wiyo</strong>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Futuristic Creator Signature Footer Banner -->
+  <footer class="creator-futuristic-banner" role="contentinfo" aria-label="Creator Credit">
+    <div class="creator-banner-left">
+      <div class="creator-orb-crest" aria-hidden="true">
+        <!-- Modern Gen Z Minimalist Line-Art Outline: Male Nurse (RN) -->
+        <svg viewBox="0 0 48 48" width="36" height="36" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <defs>
+            <linearGradient id="genzNurseStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fef08a" />
+              <stop offset="55%" stop-color="#ffffff" />
+              <stop offset="100%" stop-color="#7dd3fc" />
+            </linearGradient>
+          </defs>
+          <path d="M16.5,18 C16,12.5 19.5,8.5 25,8.5 C29.5,8.5 32.8,11.5 32.5,16.5 C31.5,13.5 28.5,12.2 24.5,12.5 C21,12.8 18.5,14.5 16.5,18 Z" stroke="url(#genzNurseStroke)" stroke-width="1.8" />
+          <path d="M17.2,17.5 C17.2,23.5 20,27.2 24,27.2 C28,27.2 30.8,23.5 30.8,17.5" stroke="url(#genzNurseStroke)" stroke-width="1.8" />
+          <path d="M18.8,18.2 H22.8 M25.2,18.2 H29.2 M22.8,18.2 C23.4,17.8 24.6,17.8 25.2,18.2" stroke="#fde047" stroke-width="1.5" />
+          <path d="M21.2,26.8 V29.5 M26.8,26.8 V29.5" stroke="url(#genzNurseStroke)" stroke-width="1.7" />
+          <path d="M10.5,40.5 C11.2,34 15.2,30.5 21,29.8 L24,35.2 L27,29.8 C32.8,30.5 36.8,34 37.5,40.5" stroke="url(#genzNurseStroke)" stroke-width="1.9" />
+          <path d="M18.5,30.2 C16.8,33.5 17.2,37 19.2,38.8" stroke="#fde047" stroke-width="1.6" />
+          <circle cx="19.8" cy="39.2" r="2.1" stroke="#fde047" stroke-width="1.6" />
+          <path d="M29.5,30.2 C31.2,33.2 31.2,36.2 29.8,38.5" stroke="#fde047" stroke-width="1.6" />
+          <path d="M37,10 V14.4 M34.8,12.2 H39.2" stroke="#fde047" stroke-width="1.7" />
+        </svg>
+      </div>
+      <div>
+        <div class="creator-kicker">TRACHOME • CLINICAL INNOVATION &amp; 3D INTERACTIVE ARCHITECTURE</div>
+        <div class="creator-headline">
+          <span>Conceived, Designed, and Brought to Life by</span>
+          <span class="creator-name-glow">RN.Patipon Wiyo</span>
+        </div>
+      </div>
+    </div>
+    <div class="creator-tech-pill">
+      <span class="creator-live-dot"></span>
+      <span>ORIGINAL CREATOR</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
